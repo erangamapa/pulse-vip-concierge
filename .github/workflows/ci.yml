@@ -1,0 +1,35 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: pulse-vip-concierge
+      - uses: actions/checkout@v4
+        with:
+          repository: erangamapa/sportsbook-contracts
+          path: sportsbook-contracts
+      - uses: actions/checkout@v4
+        with:
+          repository: erangamapa/agentloop
+          path: agentloop
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: pulse-vip-concierge/package-lock.json
+      - run: npm ci
+        working-directory: sportsbook-contracts/packages/ts
+      - run: npm ci
+        working-directory: agentloop
+      - run: npm ci
+        working-directory: pulse-vip-concierge
+      - run: npm run typecheck
+        working-directory: pulse-vip-concierge
+      - run: npm test
+        working-directory: pulse-vip-concierge
