@@ -42,22 +42,15 @@ The manager tooling posts decisions to `/webhooks/manager-decision` with a hex H
 
 ## Running it
 
-The sibling repos must sit next to this one.
+Node 22 and git. `agentloop` and `sportsbook-contracts` are git dependencies pinned by the lockfile and built by their own `prepare` scripts on install, so a lone clone works.
 
 ```
-../agentloop
-../sportsbook-contracts
-```
-
-```
-cd ../sportsbook-contracts/packages/ts && npm install
-cd ../../../agentloop && npm install
-cd ../pulse-vip-concierge && npm install
+npm install
 npm run typecheck
 npm test
 ```
 
-Neither sibling has a build output, so the test and type config point at their source directly. Copy `.env.example` to `.env` and fill the values to run the server with `npm start`. To build the image, run `docker build -f pulse-vip-concierge/Dockerfile .` from the folder that holds all three repos.
+Copy `.env.example` to `.env` and fill the values to run the server with `npm start`. To build the image, run `docker build -t pulse-vip-concierge .`.
 
 ## Not done
 

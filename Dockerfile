@@ -1,14 +1,10 @@
-# Build from the folder that holds all three repos.
-#   docker build -f pulse-vip-concierge/Dockerfile -t pulse-vip-concierge .
+#   docker build -t pulse-vip-concierge .
 FROM node:22-slim
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /srv
-COPY sportsbook-contracts/packages/ts ./sportsbook-contracts/packages/ts
-COPY agentloop ./agentloop
-COPY pulse-vip-concierge ./pulse-vip-concierge
-RUN cd sportsbook-contracts/packages/ts && npm ci
-RUN cd agentloop && npm ci
-WORKDIR /srv/pulse-vip-concierge
+COPY package.json package-lock.json tsconfig.json ./
 RUN npm ci --omit=dev
+COPY src ./src
 ENV NODE_ENV=production
 EXPOSE 8080
 USER node
