@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "agentloop": ["../agentloop/src/index.ts"],
+      "sportsbook-contracts": ["../sportsbook-contracts/packages/ts/src/index.ts"]
+    }
+  },
+  "include": ["src", "tests", "vitest.config.ts"]
+}

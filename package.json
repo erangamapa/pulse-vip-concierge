@@ -1,0 +1,31 @@
+{
+  "name": "pulse-vip-concierge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private telegram concierge for high value customers. It requests, a human approves.",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": { "node": ">=22" },
+  "license": "MIT",
+  "author": "Eranga Mapa",
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.0",
+    "@langchain/core": "^0.3.0",
+    "@langchain/langgraph": "^0.2.0",
+    "@langchain/openai": "^0.3.0",
+    "agentloop": "file:../agentloop",
+    "grammy": "^1.30.0",
+    "sportsbook-contracts": "file:../sportsbook-contracts/packages/ts",
+    "tsx": "^4.19.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
